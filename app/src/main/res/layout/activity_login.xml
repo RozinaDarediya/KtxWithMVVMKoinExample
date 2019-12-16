@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data class="LoginActivityBinding">
+
+        <variable
+            name="viewModel"
+            type="com.example.ktxexample.viewmodel.LoginActivityVM" />
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+        tools:context=".view.LoginActivity">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tillEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:errorEnabled="true">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_email"
+                android:drawablePadding="10dp"
+                android:drawableTint="@color/colorAccent"
+                android:hint="email"
+                android:imeOptions="actionNext"
+                android:inputType="textEmailAddress"
+                android:text="@={viewModel.emailLiveData}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tillPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:errorEnabled="true">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_email"
+                android:drawablePadding="10dp"
+                android:drawableTint="@color/colorAccent"
+                android:hint="password"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:text="@={viewModel.passwordLiveData}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="@{()->viewModel.login(viewModel.emailLiveData, viewModel.passwordLiveData)}"
+            android:text="Login"
+            android:backgroundTint="#114455"
+            android:textColor="#ffffff"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</layout>

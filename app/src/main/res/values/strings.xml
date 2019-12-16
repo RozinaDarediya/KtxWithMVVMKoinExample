@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">KTXExample</string>
+
+    <string name="str_no_internet">Sorry there appears to be a problem with your internet connection, please try again later.</string>
+    <string name="str_server_error">We are unable to connect with server, please try again later.</string>
+    <string name="str_request_cancelled">Your request has been cancelled.</string>
+</resources>
