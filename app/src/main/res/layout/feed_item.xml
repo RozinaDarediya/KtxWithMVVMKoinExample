@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data class="ItemUserBinding">
+
+        <import type="com.example.ktxexample.utils.binding.FeedBindingUtils" />
+
+        <variable
+            name="feed"
+            type="com.example.ktxexample.model.response.feed_model.BaseNewsFeed" />
+
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@color/cardview_shadow_end_color"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/text1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/image"
+            android:fontFamily="sans-serif-black"
+            android:padding="5dp"
+            android:text="@{FeedBindingUtils.setTitle(feed)}"
+            android:textColor="#000000"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/text2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text1"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@+id/image"
+            android:text="@{FeedBindingUtils.createFullName(feed)}"
+            android:textColor="#000000"
+            android:textSize="15dp" />
+
+
+    </RelativeLayout>
+
+</layout>

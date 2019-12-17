@@ -15,7 +15,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="10dp"
-        tools:context=".view.LoginActivity">
+        tools:context=".view.activity.LoginActivity">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tillEmail"

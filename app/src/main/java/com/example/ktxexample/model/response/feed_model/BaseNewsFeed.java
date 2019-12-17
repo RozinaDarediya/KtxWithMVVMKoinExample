@@ -1,11 +1,16 @@
 package com.example.ktxexample.model.response.feed_model;
 
+import android.widget.ImageView;
+
+import androidx.databinding.BindingAdapter;
 import androidx.room.ColumnInfo;
 import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.ktxexample.local.converter.DateConvertersJava;
 
 import org.jetbrains.annotations.NotNull;
@@ -89,6 +94,14 @@ public class BaseNewsFeed implements Serializable {
 
     @ColumnInfo(name = "countryCode")
     public String countryCode = null;
+
+    @BindingAdapter("profileImage")
+    public static void loadImage(ImageView view, String imageUrl) {
+
+        Glide.with(view.getContext())
+                .load("https://randomuser.me/api/portraits/women/90.jpg").apply(new RequestOptions().circleCrop())
+                .into(view);
+    }
 
 }
 

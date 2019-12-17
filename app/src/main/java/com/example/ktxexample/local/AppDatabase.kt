@@ -8,7 +8,9 @@ import androidx.room.TypeConverters
 import com.example.ktxexample.R
 import com.example.ktxexample.local.converter.StringTypeConverter
 import com.example.ktxexample.local.dao.DeviceInfoDao
+import com.example.ktxexample.local.dao.NewsFeedDao
 import com.example.ktxexample.local.dao.UserInfoDao
+import com.example.ktxexample.model.response.feed_model.BaseNewsFeed
 import com.example.ktxexample.model.response.login.LoginResponseModel
 import com.example.ktxexample.utils.Log
 
@@ -20,7 +22,8 @@ import com.example.ktxexample.utils.Log
 @Database(
     entities = [
         LoginResponseModel.Response.DeviceInfo::class,
-        LoginResponseModel.Response.UserInfo::class
+        LoginResponseModel.Response.UserInfo::class,
+        BaseNewsFeed::class
     ],
     version = 1
 )
@@ -33,6 +36,7 @@ abstract class AppDatabase : RoomDatabase() {
 
     abstract fun userInfoDao(): UserInfoDao
     abstract fun deviceInfo(): DeviceInfoDao
+    abstract fun newsFeedDao(): NewsFeedDao
 
     companion object {
         var INSTANCE: AppDatabase? = null

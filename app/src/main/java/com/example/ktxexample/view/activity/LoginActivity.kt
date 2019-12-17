@@ -1,4 +1,4 @@
-package com.example.ktxexample.view
+package com.example.ktxexample.view.activity
 
 import android.content.DialogInterface
 import android.content.Intent

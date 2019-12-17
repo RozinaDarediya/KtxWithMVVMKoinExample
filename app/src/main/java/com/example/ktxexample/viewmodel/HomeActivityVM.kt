@@ -1,40 +1,33 @@
 package com.example.ktxexample.viewmodel
 
-import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.viewModelScope
-import com.example.ktxexample.BuildConfig
 import com.example.ktxexample.app_interface.DefaultDispatcherProvider
 import com.example.ktxexample.app_interface.DispatcherProvider
 import com.example.ktxexample.base.BaseVM
 import com.example.ktxexample.local.AppDatabase
-import com.example.ktxexample.model.request.DeviceInfo
 import com.example.ktxexample.model.response.feed_model.BaseNewsFeed
 import com.example.ktxexample.model.response.feed_model.RSS.Feed
 import com.example.ktxexample.remote.ApiRSSService
-import com.example.ktxexample.remote.ApiService
 import com.example.ktxexample.state.HomeScreenState
-import com.example.ktxexample.state.LoginScreenState
-import com.example.ktxexample.utils.ApiConstants
+import com.example.ktxexample.state.Resource
 import com.example.ktxexample.utils.AppConstants
 import com.example.ktxexample.utils.Log
-import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
-import org.koin.android.ext.android.inject
 import org.koin.core.inject
-import java.util.HashMap
-import java.util.regex.Pattern
 
 class HomeActivityVM(private val dispatcher: DispatcherProvider = DefaultDispatcherProvider()) :
     BaseVM() {
 
     private val apiRssService: ApiRSSService by inject()
+    private val appDatabase: AppDatabase by inject()
 
     private var state = MutableLiveData<HomeScreenState>(HomeScreenState.Initial)
-
     fun state(): LiveData<HomeScreenState> = state
+
 
     fun combineApiCall() = viewModelScope.launch(dispatcher.default()) {
         var result1: Feed? = null
@@ -53,13 +46,40 @@ class HomeActivityVM(private val dispatcher: DispatcherProvider = DefaultDispatc
         })
     }
 
-    private fun computeResult(result1: Feed?, result2: Feed?): ArrayList<Feed> {
+    private fun computeResult(result1: Feed?, result2: Feed?): ArrayList<BaseNewsFeed> {
         val list: ArrayList<Feed> = ArrayList()
+        val baseNewsFeedList: ArrayList<BaseNewsFeed> = ArrayList()
         result1?.let { list.add(it) }
-        if (result2 != null) {
-            list.add(result2)
+        result2?.let { list.add(it) }
+        if (result1 != null) {
+            val list1: List<BaseNewsFeed> = result1.articleList
+            if (result1.articleList.size > 0) {
+                for (i in 0 until list.size) {
+                    list1[i].mainType = AppConstants.FEED_HEALTH
+                    list1[i].feedPubDate =
+                        com.example.ktxexample.utils.DateUtils.getRSSDate(list1[i].pubDate)
+                    list1[i].country = "India"
+                }
+            }
+            baseNewsFeedList.addAll(list1)
         }
-        return list
+        if (result2 != null) {
+            val list2: List<BaseNewsFeed> = result2.articleList
+            if (result2.articleList.size > 0) {
+                for (i in 0 until list.size) {
+                    list2[i].mainType = AppConstants.FEED_HEALTH
+                    list2[i].feedPubDate =
+                        com.example.ktxexample.utils.DateUtils.getRSSDate(list2[i].pubDate)
+                    list2[i].country = "India"
+                }
+            }
+            baseNewsFeedList.addAll(list2)
+        }
+        appDatabase.newsFeedDao().deleteTableRecords()
+        Log.e("inside store " + appDatabase.newsFeedDao().getFeedRecords())
+        appDatabase.newsFeedDao().insertRecordList(baseNewsFeedList)
+        Log.e(appDatabase.newsFeedDao().getFeedRecords().size.toString())
+        return baseNewsFeedList
     }
 
 }
