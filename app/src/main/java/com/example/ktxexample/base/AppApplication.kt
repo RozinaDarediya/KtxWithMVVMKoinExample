@@ -20,7 +20,7 @@ class AppApplication : Application() {
                     devideInfo,
                     appDatabase,
                     RSSNetwork,
-                    homeVmModule
+                    homeVmModule, detailVmModule
                 )
             )
         }

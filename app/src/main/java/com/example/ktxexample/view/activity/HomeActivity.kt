@@ -1,6 +1,7 @@
 package com.example.ktxexample.view.activity
 
 import android.content.DialogInterface
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.lifecycle.observe
@@ -9,17 +10,20 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ktxexample.R
 import com.example.ktxexample.base.BaseActivity
 import com.example.ktxexample.databinding.HomeActivityBinding
+import com.example.ktxexample.model.response.feed_model.BaseNewsFeed
 import com.example.ktxexample.state.HomeScreenState
 import com.example.ktxexample.utils.AppDialog
 import com.example.ktxexample.utils.Log
 import com.example.ktxexample.utils.ParseApiError
 import com.example.ktxexample.view.adapter.FeedAdapter
+import com.example.ktxexample.view.adapter.ItemTouchListener
 import com.example.ktxexample.viewmodel.HomeActivityVM
 import kotlinx.android.synthetic.main.activity_home.*
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class HomeActivity : BaseActivity<HomeActivityVM, HomeActivityBinding>(R.layout.activity_home) {
+class HomeActivity : BaseActivity<HomeActivityVM, HomeActivityBinding>(R.layout.activity_home),
+    ItemTouchListener {
 
     private lateinit var feedAdapter: FeedAdapter
     override val viewModel: HomeActivityVM by viewModel()
@@ -39,7 +43,7 @@ class HomeActivity : BaseActivity<HomeActivityVM, HomeActivityBinding>(R.layout.
 
     private fun setRecyclerView() {
         try {
-            feedAdapter = FeedAdapter(this)
+            feedAdapter = FeedAdapter(this,this)
             val layoutManager = LinearLayoutManager(this)
             feedList.layoutManager = layoutManager
             feedList.hasFixedSize()
@@ -86,5 +90,11 @@ class HomeActivity : BaseActivity<HomeActivityVM, HomeActivityBinding>(R.layout.
         } catch (e: Exception) {
             Log.e(e.toString())
         }
+    }
+
+    override fun onItemClick(feed: BaseNewsFeed) {
+        val intent = Intent(this,DetailActivity::class.java)
+        intent.putExtra("feed",feed)
+        startActivity(intent)
     }
 }

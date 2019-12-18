@@ -3,7 +3,6 @@ package com.example.ktxexample.base
 import android.app.Dialog
 import android.os.Bundle
 import android.view.Window
-import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -15,7 +14,7 @@ abstract class BaseActivity<VM : BaseVM, VDB : ViewDataBinding>(@LayoutRes priva
     AppCompatActivity() {
 
     abstract val viewModel: VM
-    private lateinit var binding: VDB
+    lateinit var binding: VDB
     private var mProgressDialog: Dialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,7 +34,6 @@ abstract class BaseActivity<VM : BaseVM, VDB : ViewDataBinding>(@LayoutRes priva
         mProgressDialog = Dialog(this@BaseActivity, R.style.MyTheme)
         mProgressDialog!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
         mProgressDialog!!.setCancelable(false)
-        //mProgressDialog!!.window!!.setBackgroundDrawable(ColorDrawable(Color.BLACK))
         mProgressDialog!!.setContentView(R.layout.progress)
     }
 

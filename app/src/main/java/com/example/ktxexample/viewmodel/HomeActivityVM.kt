@@ -12,7 +12,6 @@ import com.example.ktxexample.model.response.feed_model.BaseNewsFeed
 import com.example.ktxexample.model.response.feed_model.RSS.Feed
 import com.example.ktxexample.remote.ApiRSSService
 import com.example.ktxexample.state.HomeScreenState
-import com.example.ktxexample.state.Resource
 import com.example.ktxexample.utils.AppConstants
 import com.example.ktxexample.utils.Log
 import kotlinx.coroutines.async

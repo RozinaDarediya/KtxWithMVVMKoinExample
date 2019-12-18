@@ -1,5 +1,6 @@
 package com.example.ktxexample.di
 
+import com.example.ktxexample.viewmodel.DetailActivityVM
 import com.example.ktxexample.viewmodel.HomeActivityVM
 import com.example.ktxexample.viewmodel.LoginActivityVM
 import org.koin.android.viewmodel.dsl.viewModel
@@ -14,5 +15,11 @@ val vmModule = module {
 val homeVmModule = module {
     viewModel {
         HomeActivityVM()
+    }
+}
+
+val detailVmModule = module {
+    viewModel {
+        DetailActivityVM()
     }
 }
