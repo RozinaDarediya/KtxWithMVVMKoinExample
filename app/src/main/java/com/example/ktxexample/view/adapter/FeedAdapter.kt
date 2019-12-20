@@ -58,6 +58,7 @@ class FeedAdapter(var content: Context,_listener: ItemTouchListener) : RecyclerV
 
 class UserViewHolder(var mUserBinding: ItemUserBinding) :
     androidx.recyclerview.widget.RecyclerView.ViewHolder(mUserBinding.root) {
+
     fun setUser(user: BaseNewsFeed) {
         mUserBinding.feed = user
     }

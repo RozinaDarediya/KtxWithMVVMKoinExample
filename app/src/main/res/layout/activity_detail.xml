@@ -7,7 +7,7 @@
     <data class="DetailActivityBinding">
 
         <variable
-            name="detailviewModel"
+            name="viewModel"
             type="com.example.ktxexample.viewmodel.DetailActivityVM" />
 
         <variable
@@ -27,9 +27,10 @@
 
             <ImageView
                 android:id="@+id/imageClose"
-                android:layout_width="15dp"
-                android:layout_height="16dp"
+                android:layout_width="8dp"
+                android:layout_height="12dp"
                 android:layout_margin="20dp"
+                android:onClick="@{()->viewModel.onCloseClick()}"
                 android:scaleType="fitXY"
                 android:src="@drawable/ic_close"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -49,13 +50,13 @@
             <TextView
                 android:id="@+id/textTitle"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="10dp"
                 android:fontFamily="sans-serif-black"
                 android:gravity="center"
-                android:text="@{feed.source}"
+                android:text="@{feed.title}"
                 android:textColor="#000000"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -64,8 +65,8 @@
 
             <TextView
                 android:id="@+id/textCountry"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="4dp"
+                android:layout_height="17dp"
                 android:layout_marginEnd="10dp"
                 android:fontFamily="sans-seri"
                 android:text="@{feed.country}"
@@ -134,7 +135,7 @@
                 android:layout_marginEnd="10dp"
                 android:clickable="true"
                 android:fontFamily="sans-seri"
-                android:onClick="@{()->detailviewModel.onLinkClick()}"
+                android:onClick="@{()->viewModel.onLinkClick(feed.link)}"
                 android:text="@{feed.link}"
                 android:textColor="#4B4848"
                 android:textSize="15sp"
@@ -174,7 +175,7 @@
                 android:layout_margin="20dp"
                 android:layout_marginEnd="10dp"
                 android:fontFamily="sans-seri"
-                android:text="@{feed.pubDate}"
+                android:text="@={viewModel.pubDateLiveData}"
                 android:textColor="#4B4848"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -183,14 +184,14 @@
             <TextView
                 android:id="@+id/text"
                 android:layout_width="0dp"
-                android:layout_height="20dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:background="#32008577"
                 android:fontFamily="sans-serif-black"
                 android:padding="5dp"
-                android:text="@={detailviewModel.emailLiveData}"
+                android:text="@={viewModel.titleLiveData}"
                 android:textColor="#000000"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -97,7 +97,6 @@ public class BaseNewsFeed implements Serializable {
 
     @BindingAdapter("profileImage")
     public static void loadImage(ImageView view, String imageUrl) {
-
         Glide.with(view.getContext())
                 .load("https://randomuser.me/api/portraits/women/90.jpg").apply(new RequestOptions().circleCrop())
                 .into(view);

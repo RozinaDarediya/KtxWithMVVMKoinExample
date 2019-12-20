@@ -2,15 +2,16 @@ package com.example.ktxexample.view.activity
 
 import android.os.Bundle
 import androidx.lifecycle.observe
-import com.example.ktxexample.R
 import com.example.ktxexample.base.BaseActivity
 import com.example.ktxexample.databinding.DetailActivityBinding
 import com.example.ktxexample.model.response.feed_model.BaseNewsFeed
 import com.example.ktxexample.state.CommonState
 import com.example.ktxexample.utils.Log
 import com.example.ktxexample.viewmodel.DetailActivityVM
-import kotlinx.android.synthetic.main.activity_detail.*
 import org.koin.android.viewmodel.ext.android.viewModel
+import android.content.Intent
+import android.net.Uri
+import com.example.ktxexample.R
 
 class DetailActivity :
     BaseActivity<DetailActivityVM, DetailActivityBinding>(R.layout.activity_detail) {
@@ -25,17 +26,6 @@ class DetailActivity :
         viewModel.state().observe(this) { state ->
             renderStatus(state)
         }
-
-        imageClose.setOnClickListener {
-            Log.e("imageClose")
-        }
-        textLink.setOnClickListener {
-            Log.e("textLink")
-        }
-
-        /*viewModel.state().observe(this) { state ->
-            renderState(state)
-        }*/
     }
 
     private fun renderStatus(state: CommonState) {
@@ -45,8 +35,13 @@ class DetailActivity :
             }
 
             is CommonState.LinkClick -> {
-                val url = state.linkUrl
-                Log.e(url)
+                try {
+                    val url: String = state.linkUrl.trim()
+                    startActivity(Intent(Intent.ACTION_VIEW).setData(Uri.parse(url)))
+                    Log.e(url)
+                } catch (e: Exception) {
+                    Log.e(e.toString())
+                }
             }
         }
     }
