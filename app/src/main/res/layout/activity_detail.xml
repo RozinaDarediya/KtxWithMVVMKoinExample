@@ -40,9 +40,10 @@
                 android:id="@+id/image"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="44dp"
                 android:src="@mipmap/ic_launcher_round"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@tools:sample/avatars" />
@@ -65,8 +66,8 @@
 
             <TextView
                 android:id="@+id/textCountry"
-                android:layout_width="4dp"
-                android:layout_height="17dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:fontFamily="sans-seri"
                 android:text="@{feed.country}"
@@ -183,7 +184,7 @@
 
             <TextView
                 android:id="@+id/text"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
@@ -194,7 +195,6 @@
                 android:text="@={viewModel.titleLiveData}"
                 android:textColor="#000000"
                 android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textPubdate" />
 

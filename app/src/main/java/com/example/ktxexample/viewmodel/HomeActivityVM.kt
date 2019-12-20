@@ -58,6 +58,7 @@ class HomeActivityVM(private val dispatcher: DispatcherProvider = DefaultDispatc
                     list1[i].feedPubDate =
                         com.example.ktxexample.utils.DateUtils.getRSSDate(list1[i].pubDate)
                     list1[i].country = "India"
+                    //list1[i].imgContent.url = "https://microhealth.com/assets/images/illustrations/personal-user-illustration-@2x.png"
                 }
             }
             baseNewsFeedList.addAll(list1)
@@ -70,6 +71,7 @@ class HomeActivityVM(private val dispatcher: DispatcherProvider = DefaultDispatc
                     list2[i].feedPubDate =
                         com.example.ktxexample.utils.DateUtils.getRSSDate(list2[i].pubDate)
                     list2[i].country = "India"
+                    //list2[i].imgContent.url = "https://microhealth.com/assets/images/illustrations/personal-user-illustration-@2x.png"
                 }
             }
             baseNewsFeedList.addAll(list2)

@@ -284,10 +284,6 @@ class DateUtils {
         @SuppressLint("SimpleDateFormat")
         fun getTripDisplay(date: String): String {
             var returnDate = ""
-
-            val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
-            val date1: Date = dateFormat.parse(date)
-
             val serverDate = date.replace("T", " ").replace("Z", "")
             val serverDF = SimpleDateFormat(SIMPLE_FORMAT)
             try {

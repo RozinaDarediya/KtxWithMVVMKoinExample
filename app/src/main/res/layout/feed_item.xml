@@ -10,6 +10,10 @@
             name="feed"
             type="com.example.ktxexample.model.response.feed_model.BaseNewsFeed" />
 
+        <variable
+            name="imageUrl"
+            type="String" />
+
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -25,6 +29,7 @@
             android:id="@+id/image"
             android:layout_width="80dp"
             android:layout_height="80dp"
+            app:profileImage="@{imageUrl}"
             tools:src="@tools:sample/avatars" />
 
         <TextView
@@ -49,7 +54,7 @@
             android:textColor="#000000"
             android:textSize="15dp" />
 
-  <TextView
+        <TextView
             android:id="@+id/text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
