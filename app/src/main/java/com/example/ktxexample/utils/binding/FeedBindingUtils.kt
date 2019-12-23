@@ -1,6 +1,7 @@
 package com.example.ktxexample.utils.binding
 
 import android.util.Log
+import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -68,6 +69,12 @@ object FeedBindingUtils {
         else
             return "Pub Date"
     }
+
+  /*  @BindingAdapter("android:text")
+    fun setPaddingLeft(view: TextView, date: String) {
+        com.example.ktxexample.utils.Log.e("setPaddingLeft")
+        view.text = date;
+    }*/
 
 
 }

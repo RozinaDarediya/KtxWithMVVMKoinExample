@@ -1,6 +1,8 @@
 package com.example.ktxexample.model.response.feed_model;
 
+import android.util.Log;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.databinding.BindingAdapter;
 import androidx.room.ColumnInfo;
@@ -95,12 +97,41 @@ public class BaseNewsFeed implements Serializable {
     @ColumnInfo(name = "countryCode")
     public String countryCode = null;
 
+    /**
+     * This method is used in feed_item to display image in list
+     * @param view no need to pass view it will resolve
+     * @param imageUrl the url you want to display
+     * I have not used url here as I am showing custom image but it can be used directly to show image
+     */
     @BindingAdapter("profileImage")
     public static void loadImage(ImageView view, String imageUrl) {
+        Log.e("KTXExample", "loadImage " + imageUrl);
         Glide.with(view.getContext())
                 .load("https://randomuser.me/api/portraits/women/90.jpg").apply(new RequestOptions().circleCrop())
                 .into(view);
     }
+
+    /**
+     * This method is used in activity_detail to display image in detail
+     * @param view no need to pass view it will resolve
+     * @param imageUrl the url you want to display
+     * I have not used url here as I am showing custom image but it can be used directly to show image
+     */
+    @BindingAdapter("app:imageUrl")
+    public static void loadImageForDetail(ImageView view, String imageUrl) {
+        Log.e("KTXExample", "loadImageForDetail " + imageUrl);
+        Glide.with(view.getContext())
+                .load("https://randomuser.me/api/portraits/women/90.jpg").apply(new RequestOptions().circleCrop())
+                .into(view);
+    }
+
+    @BindingAdapter("app:text")
+    public static void setPaddingLeft(TextView view, String date) {
+        Log.e("KTXExample", "setPaddingLeft");
+        view.setText(date);
+    }
+
+
 
 }
 

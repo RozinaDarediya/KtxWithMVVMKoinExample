@@ -32,16 +32,10 @@ class FeedAdapter(var content: Context,_listener: ItemTouchListener) : RecyclerV
     }
 
     override fun onBindViewHolder(holder: androidx.recyclerview.widget.RecyclerView.ViewHolder, position: Int) {
-        var clickListener: View.OnClickListener = View.OnClickListener {
+        val clickListener: View.OnClickListener = View.OnClickListener {
             listener.onItemClick(list[holder.adapterPosition])
         }
         holder as UserViewHolder
-        Log.e("url", "https://randomuser.me/api/portraits/women/90.jpg")
-        GlideApp.with(content)
-            .load("https://randomuser.me/api/portraits/women/90.jpg")
-            .placeholder(R.drawable.ic_male_placeholder)
-            .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-            .into(holder.itemView.image)
         holder.setUser(list[position])
         holder.setClickListener(clickListener)
     }
@@ -52,11 +46,9 @@ class FeedAdapter(var content: Context,_listener: ItemTouchListener) : RecyclerV
         list.clear()
         list.addAll(newList)
     }
-
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view)
 }
 
-class UserViewHolder(var mUserBinding: ItemUserBinding) :
+class UserViewHolder(private var mUserBinding: ItemUserBinding) :
     androidx.recyclerview.widget.RecyclerView.ViewHolder(mUserBinding.root) {
 
     fun setUser(user: BaseNewsFeed) {

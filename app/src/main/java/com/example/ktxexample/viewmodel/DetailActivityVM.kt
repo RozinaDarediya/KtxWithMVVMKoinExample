@@ -1,5 +1,7 @@
 package com.example.ktxexample.viewmodel
 
+import android.widget.TextView
+import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -43,6 +45,4 @@ class DetailActivityVM(private val dispatcher: DispatcherProvider = DefaultDispa
         Log.e("onLinkClick $url")
         state.postValue(CommonState.LinkClick(url))
     }
-
-
 }

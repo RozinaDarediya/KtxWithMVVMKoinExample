@@ -59,6 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/text1"
+            android:visibility="gone"
             android:layout_marginStart="5dp"
             android:layout_toEndOf="@+id/image"
             android:text="@={feed.title}"

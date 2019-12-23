@@ -6,6 +6,8 @@
 
     <data class="DetailActivityBinding">
 
+        <import type="com.example.ktxexample.utils.binding.FeedBindingUtils" />
+
         <variable
             name="viewModel"
             type="com.example.ktxexample.viewmodel.DetailActivityVM" />
@@ -27,8 +29,8 @@
 
             <ImageView
                 android:id="@+id/imageClose"
-                android:layout_width="8dp"
-                android:layout_height="12dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_margin="20dp"
                 android:onClick="@{()->viewModel.onCloseClick()}"
                 android:scaleType="fitXY"
@@ -41,7 +43,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginTop="44dp"
-                android:src="@mipmap/ic_launcher_round"
+                app:imageUrl="@{feed.imgContent.url}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
@@ -57,7 +59,7 @@
                 android:layout_marginEnd="10dp"
                 android:fontFamily="sans-serif-black"
                 android:gravity="center"
-                android:text="@{feed.title}"
+                android:text="@{FeedBindingUtils.setTitle(feed)}"
                 android:textColor="#000000"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -176,11 +178,12 @@
                 android:layout_margin="20dp"
                 android:layout_marginEnd="10dp"
                 android:fontFamily="sans-seri"
-                android:text="@={viewModel.pubDateLiveData}"
+                android:hint="@string/app_name"
                 android:textColor="#4B4848"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textDesc" />
+                app:layout_constraintTop_toBottomOf="@+id/textDesc"
+                app:text="@{feed.pubDate}" />
 
             <TextView
                 android:id="@+id/text"
